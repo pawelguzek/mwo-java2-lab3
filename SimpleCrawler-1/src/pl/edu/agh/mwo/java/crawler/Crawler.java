@@ -10,10 +10,12 @@ import org.jsoup.nodes.Document;
 public class Crawler {
 
 	protected String urlToProcess;
+	protected TextExtractor textExtractor;
 
 	public Crawler(String initUrl) throws MalformedURLException
 	{
 		urlToProcess = initUrl;
+		textExtractor = new TextExtractor();
 	}
 
 	
@@ -24,18 +26,28 @@ public class Crawler {
 		doc = Jsoup.connect(urlToProcess).get();
 
 		
-		String text = doc.body().text();
-
-		String[] sentences = text.split("\\.");
+		String[] sentences = textExtractor.extractText(doc);
 		
+		char charToFind = 'p';		
 		for(int i = 0 ; i < sentences.length ; i++)
 		{
-			System.out.println(sentences[i]);
+			int charCount=0;
+			for( int j = 0; j < sentences[i].length(); j++){
+				if(sentences[i].charAt(j) == charToFind)
+					charCount ++;
+			}
+			if(charCount > 15)
+				System.out.println(sentences[i]);
 			
-			////////// ?? 
+//			if(sentences[i].contains("gry")){
+//				
+//			System.out.println(sentences[i]);
+//			}
+//			////////// ?? 
 
 		}	
-
 		
 	}
+	
+
 }

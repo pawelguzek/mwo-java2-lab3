@@ -15,7 +15,7 @@ public class TextExtractor {
 		List<String> filteredSentences = new ArrayList<>(); 
 		for (String sentence : sentences )
 			if (sentence.trim().length() > 0)
-				filteredSentences.add(sentence);
+				filteredSentences.add(sentence.trim());
 				
 		
 		return filteredSentences;

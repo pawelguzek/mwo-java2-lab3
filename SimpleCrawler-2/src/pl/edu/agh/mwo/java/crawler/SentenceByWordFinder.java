@@ -15,7 +15,12 @@ public class SentenceByWordFinder implements SentenceFinder{
 	@Override
 	public List<String> findSentences(List<String> sentences) 
 	{
+		
 		List<String> foundSentences = new ArrayList<>();
+		if(wordToFind == ""){
+			return foundSentences;
+		}
+		
 		for(String sentence : sentences)
 		{
 			if (sentence.contains(wordToFind))
